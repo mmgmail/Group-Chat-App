@@ -1,21 +1,29 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import "react-native-gesture-handler"; //IMPPPP
+import React from "react";
 
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import LoginScreen from "./screens/LoginScreen";
+import RegisterScreen from "./screens/RegisterScreen";
+import { StatusBar } from "expo-status-bar";
+import HomeScreen from "./screens/HomeScreen";
+//Making global styling for all sceens
+globalScreenOptions = {
+  headerStyle: { backgroundColor: "#2C6BED" },
+  headerTitleStyle: { color: "white" },
+  headerTintColor: "white",
+  headerTitleAlign: "center",
+};
+const Stack = createStackNavigator();
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <StatusBar style="light" />
+      <Stack.Navigator screenOptions={globalScreenOptions}>
+        <Stack.Screen name="LOGIN" component={LoginScreen} />
+        <Stack.Screen name="REGISTER" component={RegisterScreen} />
+        <Stack.Screen name="HOME" component={HomeScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
