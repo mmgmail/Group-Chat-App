@@ -19,6 +19,10 @@
 - react-native-elements
 
   - used for Input and Button
+  - ListItem, avatar
 
 - useLayoutEffect
+
   - Update UI as according to navigation
+
+- SafeAreaView

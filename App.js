@@ -12,7 +12,6 @@ globalScreenOptions = {
   headerStyle: { backgroundColor: "#2C6BED" },
   headerTitleStyle: { color: "white" },
   headerTintColor: "white",
-  headerTitleAlign: "center",
 };
 const Stack = createStackNavigator();
 export default function App() {

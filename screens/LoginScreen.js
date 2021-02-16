@@ -8,6 +8,7 @@ import {
   KeyboardAvoidingView,
   Platform,
   TouchableOpacity,
+  Alert,
 } from "react-native";
 import { Input, Button } from "react-native-elements";
 import { auth } from "../firebase";
@@ -27,7 +28,13 @@ const LoginScreen = ({ navigation }) => {
   }, []);
 
   //Handle sign in functionality
-  const signIn = () => {};
+  const signIn = () => {
+    auth
+      .signInWithEmailAndPassword(email, password)
+      .catch((error) =>
+        Alert.alert("Login Error", error.message, [{ text: "Okay" }])
+      );
+  };
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -41,7 +48,6 @@ const LoginScreen = ({ navigation }) => {
         <Input
           placeholder="Email"
           type="email"
-          autoFocus
           value={email}
           onChangeText={(text) => setEmail(text)}
         />
@@ -51,6 +57,7 @@ const LoginScreen = ({ navigation }) => {
           secureTextEntry //HELPS IN PROVIDING DOTS FOR PASSWORD
           value={password}
           onChangeText={(text) => setPassword(text)}
+          onSubmitEditing={signIn}
         />
       </View>
       <Button

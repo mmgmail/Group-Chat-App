@@ -1,3 +1,5 @@
+//This screen shows the registration form
+
 import React, { useState } from "react";
 import {
   StyleSheet,
