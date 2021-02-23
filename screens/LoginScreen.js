@@ -12,6 +12,7 @@ import {
 } from "react-native";
 import { Input, Button } from "react-native-elements";
 import { auth } from "../firebase";
+
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -28,7 +29,7 @@ const LoginScreen = ({ navigation }) => {
   }, []);
 
   //Handle sign in functionality
-  const signIn = () => {
+  const signInHandler = () => {
     auth
       .signInWithEmailAndPassword(email, password)
       .catch((error) =>
@@ -57,12 +58,12 @@ const LoginScreen = ({ navigation }) => {
           secureTextEntry //HELPS IN PROVIDING DOTS FOR PASSWORD
           value={password}
           onChangeText={(text) => setPassword(text)}
-          onSubmitEditing={signIn}
+          onSubmitEditing={signInHandler}
         />
       </View>
       <Button
         title="Login"
-        onPress={signIn}
+        onPress={signInHandler}
         containerStyle={styles.buttons}
         TouchableComponent={TouchableOpacity}
       />

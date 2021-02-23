@@ -1,7 +1,7 @@
 //Main screen. This screen contains all the chats
 
-import { auth } from "../firebase";
-import React, { useLayoutEffect } from "react";
+import { auth, db } from "../firebase";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import {
   StyleSheet,
   SafeAreaView,
@@ -14,11 +14,26 @@ import CustomListItem from "../components/CustomListItem";
 import { StatusBar } from "expo-status-bar";
 import { AntDesign, SimpleLineIcons } from "@expo/vector-icons";
 const HomeScreen = ({ navigation }) => {
+  const [chats, setChats] = useState([]);
+
   const signOutHandler = () => {
     auth.signOut().then(() => {
       navigation.replace("LOGIN");
     });
   };
+
+  //retrieve all the chats from DB
+  useEffect(() => {
+    const unsubscribe = db.collection("chats").onSnapshot((snapshot) => {
+      setChats(
+        snapshot.docs.map((doc) => ({
+          id: doc.id,
+          data: doc.data(),
+        }))
+      );
+    });
+    return unsubscribe; //For cleaning up the data, when un-rendering
+  }, []);
 
   //Update the layout whenever we reach this screen
   useLayoutEffect(() => {
@@ -54,19 +69,22 @@ const HomeScreen = ({ navigation }) => {
           <TouchableOpacity style={{ marginRight: 20 }}>
             <AntDesign name="camerao" size={26} color="black" />
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => navigation.navigate("ADD_CHAT_SCREEN")}
+          >
             <SimpleLineIcons name="pencil" size={24} color="black" />
           </TouchableOpacity>
         </View>
       ),
     });
   }, [navigation]);
-
   return (
     <SafeAreaView>
       <StatusBar style="black" />
       <ScrollView>
-        <CustomListItem />
+        {chats.map(({ id, data: { chatName } }) => {
+          return <CustomListItem id={id} chatName={chatName} key={id} />;
+        })}
       </ScrollView>
     </SafeAreaView>
   );

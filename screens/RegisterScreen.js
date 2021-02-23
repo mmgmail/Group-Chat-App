@@ -27,6 +27,8 @@ const RegisterScreen = ({ navigation }) => {
             imageUrl ||
             "https://cdn3.iconfinder.com/data/icons/toolbar-people/512/user_comment_man_male_talk_profile-512.png",
         });
+        //When user is logged in, we don't want him to go back to login/registration page.
+        //So we pop all the pages from the stack and only home page is pushed
         navigation.reset({
           index: 0,
           routes: [{ name: "HOME" }],
