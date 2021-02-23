@@ -22,7 +22,7 @@ const HomeScreen = ({ navigation }) => {
     });
   };
 
-  //retrieve all the chats from DB
+  //retrieve all the chats from DB (firebase)
   useEffect(() => {
     const unsubscribe = db.collection("chats").onSnapshot((snapshot) => {
       setChats(
@@ -38,7 +38,7 @@ const HomeScreen = ({ navigation }) => {
   //Update the layout whenever we reach this screen
   useLayoutEffect(() => {
     navigation.setOptions({
-      title: "Signal",
+      title: "GROUP CHATS",
       headerStyle: { backgroundColor: "#fff" },
       headerTitleStyle: { color: "black" },
       headerTintColor: "black",
@@ -78,18 +78,28 @@ const HomeScreen = ({ navigation }) => {
       ),
     });
   }, [navigation]);
+
+  const showChat = (id, chatName) => {
+    navigation.navigate("CHATS", { id, chatName });
+  };
+
   return (
-    <SafeAreaView>
+    <View>
       <StatusBar style="black" />
       <ScrollView>
         {chats.map(({ id, data: { chatName } }) => {
-          return <CustomListItem id={id} chatName={chatName} key={id} />;
+          return (
+            <CustomListItem
+              id={id}
+              chatName={chatName}
+              key={id}
+              showChat={showChat}
+            />
+          );
         })}
       </ScrollView>
-    </SafeAreaView>
+    </View>
   );
 };
 
 export default HomeScreen;
-
-const styles = StyleSheet.create({});

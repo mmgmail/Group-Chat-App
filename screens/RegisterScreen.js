@@ -6,6 +6,7 @@ import {
   View,
   KeyboardAvoidingView,
   TouchableOpacity,
+  Platform,
 } from "react-native";
 import { Text, Input, Button } from "react-native-elements";
 import { auth } from "../firebase";

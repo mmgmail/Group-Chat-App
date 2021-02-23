@@ -25,4 +25,13 @@
 
   - Update UI as according to navigation
 
-- SafeAreaView
+- The params can be send between routes as
+
+  ```
+  const showChat = (id, chatName) => {
+    navigation.navigate("CHATS", { id, chatName });
+  };
+
+  ```
+
+  can be retrived by route.params.id. Need to get route from props
