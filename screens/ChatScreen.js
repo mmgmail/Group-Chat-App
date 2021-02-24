@@ -58,33 +58,44 @@ const ChatScreen = ({ navigation, route }) => {
 
   //Sending a new message to the db in collection of this user ID
   const sendMessageHandler = () => {
-    db.collection("chats").doc(route.params.id).collection("messages").add({
-      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-      message: input,
-      displayName: auth.currentUser.displayName,
-      email: auth.currentUser.email,
-      photoURL: auth.currentUser.photoURL,
-    });
-    Keyboard.dismiss();
-    setInput("");
+    try {
+      db.collection("chats").doc(route.params.id).collection("messages").add({
+        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+        message: input,
+        displayName: auth.currentUser.displayName,
+        email: auth.currentUser.email,
+        photoURL: auth.currentUser.photoURL,
+      });
+      Keyboard.dismiss();
+      setInput("");
+    } catch (error) {
+      //Display error page
+      console.log(error);
+    }
   };
 
   //useLayout for updating the chat view
   useLayoutEffect(() => {
-    const unsubscribe = db
-      .collection("chats")
-      .doc(route.params.id)
-      .collection("messages")
-      .orderBy("timestamp", "asc")
-      .onSnapshot((snapshot) =>
-        setMessages(
-          snapshot.docs.map((doc) => ({
-            id: doc.id,
-            data: doc.data(),
-          }))
-        )
-      );
-    return unsubscribe;
+    console.log("CHAT SCREEN");
+    try {
+      const unsubscribe = db
+        .collection("chats")
+        .doc(route.params.id)
+        .collection("messages")
+        .orderBy("timestamp", "asc")
+        .onSnapshot((snapshot) =>
+          setMessages(
+            snapshot.docs.map((doc) => ({
+              id: doc.id,
+              data: doc.data(),
+            }))
+          )
+        );
+      return unsubscribe;
+    } catch (error) {
+      //Display error page
+      console.log(error);
+    }
   }, [route]);
 
   const updateMessage = (text) => setInput(text);
@@ -99,17 +110,16 @@ const ChatScreen = ({ navigation, route }) => {
         keyboardVerticalOffset={110}
       >
         <>
-          {/* TouchableWithoutFeedback is used to dismiss the keyboard whenever we press any chat area*/}
-          <TouchableWithoutFeedback onPress={Keyboard.dismiss()}>
-            {/* Chats goes here */}
-            <ShowChats messages={messages} />
-          </TouchableWithoutFeedback>
+          {/* Chats goes here */}
+          <ShowChats messages={messages} />
           <View style={styles.footer}>
             <TextInput
               placeholder="Type your message..."
               style={styles.textInput}
               value={input}
-              onChangeText={updateMessage}
+              onChangeText={(text) => {
+                setInput(text);
+              }}
               onSubmitEditing={sendMessageHandler}
             />
             <TouchableOpacity activeOpacity={0.5} onPress={sendMessageHandler}>

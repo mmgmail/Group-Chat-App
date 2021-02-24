@@ -3,7 +3,7 @@
 import React from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { Avatar } from "react-native-elements";
-import { db, auth } from "../firebase";
+import { auth } from "../firebase";
 const ShowChats = ({ messages }) => {
   return (
     <ScrollView contentContainerStyle={{ paddingTop: 10 }}>

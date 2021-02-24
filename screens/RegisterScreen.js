@@ -42,7 +42,7 @@ const RegisterScreen = ({ navigation }) => {
       behavior={Platform.OS === "ios" ? "padding" : "height"}
       style={styles.container}
     >
-      <Text h3 style={{ marginBottom: 50 }}>
+      <Text h3 style={{ marginBottom: 30 }}>
         Create a Signal Account
       </Text>
 
@@ -82,7 +82,7 @@ const RegisterScreen = ({ navigation }) => {
         raised
         TouchableComponent={TouchableOpacity}
       />
-      <View style={{ height: 100 }} />
+      <View style={{ height: 80 }}></View>
     </KeyboardAvoidingView>
   );
 };

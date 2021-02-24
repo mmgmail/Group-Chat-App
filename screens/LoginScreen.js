@@ -19,6 +19,7 @@ const LoginScreen = ({ navigation }) => {
 
   //If user has logged in move to home screen
   useEffect(() => {
+    console.log("LOGIN SCREEN");
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
       if (authUser) {
         navigation.replace("HOME");
@@ -40,6 +41,7 @@ const LoginScreen = ({ navigation }) => {
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
       style={styles.container}
+      keyboardVerticalOffset={100}
     >
       <Image
         source={require("../assets/images/signal-logo.png")}

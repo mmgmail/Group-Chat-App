@@ -10,17 +10,24 @@ const CustomListItem = ({ id, chatName, showChat }) => {
 
   //getting all the chat messages of each chat in desc acc to timestamp
   useEffect(() => {
-    const unsubscribe = db
-      .collection("chats")
-      .doc(id)
-      .collection("messages")
-      .orderBy("timestamp", "desc")
-      .onSnapshot((snapshot) =>
-        setChatMessages(snapshot.docs.map((doc) => doc.data()))
-      );
+    console.log("CUSTOME LIST");
+    try {
+      const unsubscribe = db
+        .collection("chats")
+        .doc(id)
+        .collection("messages")
+        .orderBy("timestamp", "desc")
+        .onSnapshot((snapshot) =>
+          setChatMessages(snapshot.docs.map((doc) => doc.data()))
+        );
 
-    return unsubscribe;
-  });
+      return unsubscribe;
+    } catch (error) {
+      console.log("CUSTOM LIST ITEM");
+      //show error page
+      console.log(error);
+    }
+  }, []);
 
   return (
     <ListItem key={id} bottomDivider onPress={() => showChat(id, chatName)}>

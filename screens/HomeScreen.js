@@ -24,15 +24,20 @@ const HomeScreen = ({ navigation }) => {
 
   //retrieve all the chats from DB (firebase)
   useEffect(() => {
-    const unsubscribe = db.collection("chats").onSnapshot((snapshot) => {
-      setChats(
-        snapshot.docs.map((doc) => ({
-          id: doc.id,
-          data: doc.data(),
-        }))
-      );
-    });
-    return unsubscribe; //For cleaning up the data, when un-rendering
+    console.log("HOME SCREEN");
+    try {
+      const unsubscribe = db.collection("chats").onSnapshot((snapshot) => {
+        setChats(
+          snapshot.docs.map((doc) => ({
+            id: doc.id,
+            data: doc.data(),
+          }))
+        );
+      });
+      return unsubscribe; //For cleaning up the data, when un-rendering
+    } catch (error) {
+      console.log(error);
+    }
   }, []);
 
   //Update the layout whenever we reach this screen
