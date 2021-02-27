@@ -4,8 +4,10 @@
 
 ## Demo
 
-<p align="center">
-  <img src="screenshots/ss.png?raw=true" />
+<p float="left">
+  <img src="screenshots/login.png" width="100" />
+  <img src="screenshots/register.png" width="100" /> 
+  <img src="screenshots/home.png" width="100" />
 </p>
 
 See the demo video
