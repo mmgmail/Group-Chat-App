@@ -5,9 +5,11 @@
 ## Demo
 
 <p float="left">
-  <img src="screenshots/login.png" width="100" />
-  <img src="screenshots/register.png" width="100" /> 
-  <img src="screenshots/home.png" width="100" />
+  <img src="screenshots/login.png" width="200" />
+  <img src="screenshots/register.png" width="200" /> 
+  <img src="screenshots/home.png" width="200" />
+  <img src="screenshots/addChatGroup.png" width="200" />
+  <img src="screenshots/chatRoom.png" width="200" />
 </p>
 
 See the demo video
