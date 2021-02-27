@@ -8,7 +8,8 @@
   <img src="screenshots/ss.png?raw=true" />
 </p>
 
-Demo video here <a href="https://drive.google.com/file/d/1g2xwxT1cK63GzksqpjYTK3qv9OI47fr6/view?usp=sharing"></a>
+See the demo video
+[here](https://drive.google.com/file/d/1g2xwxT1cK63GzksqpjYTK3qv9OI47fr6/view?usp=sharing)!
 
 ## Install & Build
 
