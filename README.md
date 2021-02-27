@@ -1,37 +1,19 @@
-# SIGNAL CLONE
+# Group Chat App with Expo and Firebase
 
-## MODULES USED
+[![made with expo](https://img.shields.io/badge/MADE%20WITH%20EXPO-000.svg?style=for-the-badge&logo=expo&labelColor=4630eb&logoWidth=20)](https://github.com/expo/expo) [![supports iOS and Android](https://img.shields.io/badge/Platforms-Native-4630EB.svg?style=for-the-badge&logo=EXPO&labelColor=000&logoColor=fff)](https://github.com/expo/expo)
 
-- KeyboardAvoidingView:
+## Demo
 
-  - avoid hiding components behind the keyboard
+<p align="center">
+  <img src="screenshots/ss.png?raw=true" />
+</p>
 
-  ```
-   <KeyboardAvoidingView
-    behavior={Platform.OS === "ios" ? "padding" : "height"}
-    style={styles.container}
-  >
+Demo video here <a href="https://vimeo.com/user134612919/review/517462923/9863e1d847"></a>
 
-  <View style={{ height: 100 }} /> // Add this view to add some padding for last components
-  </KeyboardAvoidingView>
-  ```
+## Install & Build
 
-- react-native-elements
+First, make sure you have Expo CLI installed: `npm install -g expo-cli`
 
-  - used for Input and Button
-  - ListItem, avatar
+Install: `npm` or `npm install`
 
-- useLayoutEffect
-
-  - Update UI as according to navigation
-
-- The params can be send between routes as
-
-  ```
-  const showChat = (id, chatName) => {
-    navigation.navigate("CHATS", { id, chatName });
-  };
-
-  ```
-
-  can be retrived by route.params.id. Need to get route from props
+Run Project Locally: `npm start`
