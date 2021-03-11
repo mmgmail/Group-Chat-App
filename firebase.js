@@ -6,12 +6,12 @@ import "firebase/auth";
 import "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCj51jZIolrtsKcj4HBLPdknEbSIsc7t2I",
-  authDomain: "signal-clone-f69a1.firebaseapp.com",
-  projectId: "signal-clone-f69a1",
-  storageBucket: "signal-clone-f69a1.appspot.com",
-  messagingSenderId: "456197439072",
-  appId: "1:456197439072:web:c6c965d2638b8140b54d05",
+  apiKey: "...",
+  authDomain: "...",
+  projectId: "...",
+  storageBucket: "...",
+  messagingSenderId: "...",
+  appId: "...",
 };
 
 let app;
